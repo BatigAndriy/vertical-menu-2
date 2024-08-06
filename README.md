@@ -10,8 +10,7 @@
 The hoverable sidebar menu includes sections like Dashboard, Editor, and Setting, each containing multiple items. It also features a profile area displaying a user's image, name, and email. The menu hides and shows upon mouse hover and can be locked in the open position with a lock.
 
 ## Demo
-![-](ver_menu_1.jpg)
-![-](ver_menu_2.jpg)
+![-](ver_menu_1.jpg)        ![-](ver_menu_2.jpg)
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
