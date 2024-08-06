@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoverable Sidebar Menu </title>
+    <link rel="stylesheet" href="style.css" />
+    <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7199f58f9c.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <nav class="sidebar locked">
+      <div class="logo_items flex">
+        <div class="nav_image">
+          <img src="logo.png" alt="logo_img" />
+        </div>
+        <span class="logo_name">LOGO</span>
+        <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+        <i class="bx bx-x" id="sidebar-close"></i>
+      </div>
+
+      <div class="menu_container">
+        <div class="menu_items">
+          <ul class="menu_item">
+            <div class="menu_title flex">
+              <i class="ri-subtract-line"></i>
+              <span class="title">Dashboard</span>
+            </div>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-home-8-line"></i>
+                <span>Overview</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="bx bx-grid-alt"></i>
+                <span>All Projects</span>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="menu_item">
+            <div class="menu_title flex">
+              <i class="ri-subtract-line"></i>
+              <span class="title">Editor</span>
+            </div>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-pencil-line"></i>
+                <span>Magic Build</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-folder-2-line"></i>
+                <span>New Projects</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-download-cloud-line"></i>
+                <span>Upload New</span>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="menu_item">
+            <div class="menu_title flex">
+              <i class="ri-subtract-line"></i>
+              <span class="title">Setting</span>
+            </div>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-flag-line"></i>
+                <span>Notice Board</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-award-line"></i>
+                <span>Award</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="ri-settings-2-line"></i>
+                <span>Setting</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar_profile flex">
+          <span class="nav_image">
+            <img src="profile.png" alt="logo_img" />
+          </span>
+          <div class="data_text">
+            <span class="name">Andriy Batig</span>
+            <span class="email">asha@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+<script>
+  // Selecting the sidebar and buttons
+    const sidebar = document.querySelector(".sidebar");
+    const spans = document.querySelectorAll('span');
+    const sidebarOpenBtn = document.querySelector("#sidebar-open");
+    const sidebarCloseBtn = document.querySelector("#sidebar-close");
+    const sidebarLockBtn = document.querySelector("#lock-icon");
+
+    // Function to toggle the lock state of the sidebar
+    const toggleLock = () => {
+      sidebar.classList.toggle("locked");
+      // If the sidebar is not locked
+      if (!sidebar.classList.contains("locked")) {
+        sidebar.classList.add("hoverable");
+        sidebarLockBtn.classList.replace("bx-lock-alt", "bx-lock-open-alt");
+
+      } else {
+        sidebar.classList.remove("hoverable");
+        sidebarLockBtn.classList.replace("bx-lock-open-alt", "bx-lock-alt");
+        spans.forEach(span => {
+        span.style.opacity = 1;
+    });
+      }
+    };
+
+    // Function to hide the sidebar when the mouse leaves
+    const hideSidebar = () => {
+      if (sidebar.classList.contains("hoverable")) {
+        sidebar.classList.add("close");
+        spans.forEach(span => {
+        span.style.opacity = 0;
+    });
+      }
+    };
+
+    // Function to show the sidebar when the mouse enter
+    const showSidebar = () => {
+      if (sidebar.classList.contains("hoverable")) {
+        sidebar.classList.remove("close");
+        spans.forEach(span => {
+        span.style.opacity = 1;
+    });
+      }
+    };
+
+    // Function to show and hide the sidebar
+    const toggleSidebar = () => {
+      sidebar.classList.toggle("close");
+    };
+
+    // If the window width is less than 800px, close the sidebar and remove hoverability and lock
+
+
+    // Adding event listeners to buttons and sidebar for the corresponding actions
+    sidebarLockBtn.addEventListener("click", toggleLock);
+    sidebar.addEventListener("mouseleave", hideSidebar);
+    sidebar.addEventListener("mouseenter", showSidebar);
+    sidebarOpenBtn.addEventListener("click", toggleSidebar);
+    sidebarCloseBtn.addEventListener("click", toggleSidebar);
+</script>
+</html>
